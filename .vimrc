@@ -55,6 +55,8 @@ set mouse=a
 set nobackup
 set noswapfile
 set hidden
+set wildmenu
+set wildmode=list:longest
 
 " Tab behavior
 set expandtab
