@@ -1,5 +1,6 @@
-"------------------------------------------
+"---------------------------------------
 " Bundle(NeoBundle) configuration
+"---------------------------------------
 set nocompatible
 filetype plugin indent off
 
@@ -17,12 +18,13 @@ NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'chriskempson/vim-tomorrow-theme'
 NeoBundle 'nanotech/jellybeans.vim'
 
-"------------------------------------------
+
 filetype plugin indent on
 syntax on
 
-"------------------------------------------
+"---------------------------------------
 " ColorScheme
+"---------------------------------------
 set background=dark
 if has('gui')
     colorscheme hybrid
@@ -30,12 +32,14 @@ else
     colorscheme jellybeans
 endif
 
-"------------------------------------------
+"---------------------------------------
 " Run as VIM (no-compatible)
+"---------------------------------------
 set nocompatible
 
-"------------------------------------------
+"---------------------------------------
 " Display configuration
+"---------------------------------------
 set number
 set cursorline
 set wrap
@@ -46,17 +50,24 @@ set laststatus=2
 set cmdheight=2
 set showcmd
 
-"-------------------------------------------
+"---------------------------------------
 " Mouse configuration
+"---------------------------------------
 set mouse=a
 
-"------------------------------------------
+"---------------------------------------
 " Editor configuration
+"---------------------------------------
+" No backup, no swap file
 set nobackup
 set noswapfile
+" enable to open other file in edit
 set hidden
+" 
 set wildmenu
 set wildmode=list:longest
+" no beep
+set vb t_vb=
 
 " Tab behavior
 set expandtab
@@ -75,8 +86,9 @@ set smartcase
 au BufEnter * execute ":lcd " . expand("%:p:h")
 
 
-"-------------------------------------------
+"---------------------------------------
 " Keyboard Remap
+"---------------------------------------
 
 " Editor
 nnoremap Y y$
