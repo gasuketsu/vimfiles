@@ -100,4 +100,6 @@ let g:vimfiler_as_default_explorer = 1
 nnoremap Y y$
 " Unite
 nnoremap <F3> <ESC><ESC>:Unite buffer<CR>
-
+noremap :ub :Unite buffer
+" VimFiler
+nnoremap <Leader>e :VimFilerExplorer<CR>
