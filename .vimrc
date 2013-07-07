@@ -11,6 +11,7 @@ endif
 
 " List Bundle plugins here
 NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/vimfiler.vim'
 NeoBundle 'DirDiff.vim'
 NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'google.vim'
@@ -63,7 +64,7 @@ set nobackup
 set noswapfile
 " enable to open other file in edit
 set hidden
-" 
+" wildmode(complement)
 set wildmenu
 set wildmode=list:longest
 " no beep
@@ -75,6 +76,9 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 
+" enable to delete newline
+set backspace=2
+
 " Copy&Paste
 set clipboard=unnamed
 
@@ -85,6 +89,8 @@ set smartcase
 " change current directory when changing buffer
 au BufEnter * execute ":lcd " . expand("%:p:h")
 
+" enable VimFiler as default explorer
+let g:vimfiler_as_default_explorer = 1
 
 "---------------------------------------
 " Keyboard Remap
