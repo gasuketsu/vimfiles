@@ -11,27 +11,24 @@ endif
 
 " List Bundle plugins here
 NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/vimfiler.vim'
+NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'DirDiff.vim'
 NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'google.vim'
 NeoBundle 'w0ng/vim-hybrid'
+NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'chriskempson/vim-tomorrow-theme'
 NeoBundle 'nanotech/jellybeans.vim'
 
 
 filetype plugin indent on
-syntax on
+syntax enable
 
 "---------------------------------------
 " ColorScheme
 "---------------------------------------
 set background=dark
-if has('gui')
-    colorscheme hybrid
-else
-    colorscheme jellybeans
-endif
+colorscheme hybrid
 
 "---------------------------------------
 " Run as VIM (no-compatible)
@@ -47,9 +44,10 @@ set wrap
 set list
 set listchars=tab:>-,trail:-
 
-set laststatus=2
 set cmdheight=2
+set laststatus=2
 set showcmd
+set display=lastline
 
 "---------------------------------------
 " Mouse configuration
@@ -62,13 +60,22 @@ set mouse=a
 " No backup, no swap file
 set nobackup
 set noswapfile
+
 " enable to open other file in edit
 set hidden
+
 " wildmode(complement)
 set wildmenu
 set wildmode=list:longest
+set wildignore+=*.o,*.obj,*.pyc,*.DS_Store,*.db
+
 " no beep
 set vb t_vb=
+
+" timeout
+set notimeout
+set ttimeout
+set timeoutlen=200
 
 " Tab behavior
 set expandtab
@@ -89,8 +96,10 @@ set smartcase
 " change current directory when changing buffer
 au BufEnter * execute ":lcd " . expand("%:p:h")
 
-" enable VimFiler as default explorer
-let g:vimfiler_as_default_explorer = 1
+"---------------------------------------
+" Ctags
+"---------------------------------------
+set tags+=tags;~/
 
 "---------------------------------------
 " Keyboard Remap
@@ -99,7 +108,18 @@ let g:vimfiler_as_default_explorer = 1
 " Editor
 nnoremap Y y$
 " Unite
+nmap <Leader>u [UNITE]
+nnoremap [UNITE]b <ESC><ESC>:Unite buffer<CR>
 nnoremap <F3> <ESC><ESC>:Unite buffer<CR>
-noremap :ub :Unite buffer
-" VimFiler
-nnoremap <Leader>e :VimFilerExplorer<CR>
+
+" NERDTree
+noremap <F9> :NERDTreeCWD<CR>
+
+" Gtags
+nmap <Leader>g [GTAGS]
+nnoremap [GTAGS]g :Gtags 
+nnoremap [GTAGS]. :GtagsCursor<CR>
+nnoremap [GTAGS]_ :Gtags -r <C-r><C-w><CR>
+nnoremap <C-n> :cn<CR>
+nnoremap <C-p> :cp<CR>
+
