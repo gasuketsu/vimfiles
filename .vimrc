@@ -10,15 +10,15 @@ if has('vim_starting')
 endif
 
 " List Bundle plugins here
-NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/neocomplcache.vim'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'DirDiff.vim'
-NeoBundle 'Lokaltog/vim-powerline'
+NeoBundle 'itchyny/lightline.vim'
+NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'QuickBuf'
 NeoBundle 'google.vim'
 NeoBundle 'w0ng/vim-hybrid'
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'chriskempson/vim-tomorrow-theme'
-NeoBundle 'nanotech/jellybeans.vim'
+NeoBundle 'tomasr/molokai'
 
 
 filetype plugin indent on
@@ -27,8 +27,12 @@ syntax enable
 "---------------------------------------
 " ColorScheme
 "---------------------------------------
+set t_Co=256
 set background=dark
 colorscheme hybrid
+let g:lightline = {
+    \ 'colorscheme': 'default'
+    \}
 
 "---------------------------------------
 " Run as VIM (no-compatible)
@@ -107,10 +111,9 @@ set tags+=tags;~/
 
 " Editor
 nnoremap Y y$
-" Unite
-nmap <Leader>u [UNITE]
-nnoremap [UNITE]b <ESC><ESC>:Unite buffer<CR>
-nnoremap <F3> <ESC><ESC>:Unite buffer<CR>
+
+" QuickBuf
+let g:qb_hotkey = "<F3>"
 
 " NERDTree
 noremap <F9> :NERDTreeCWD<CR>
