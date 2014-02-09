@@ -17,6 +17,7 @@ NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'QuickBuf'
 NeoBundle 'google.vim'
+NeoBundle 'cocopon/lightline-hybrid.vim'
 NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'tomasr/molokai'
 
@@ -30,9 +31,8 @@ syntax enable
 set t_Co=256
 set background=dark
 colorscheme hybrid
-let g:lightline = {
-    \ 'colorscheme': 'default'
-    \}
+let g:lightline = {}
+let g:lightline.colorscheme = 'default'
 
 "---------------------------------------
 " Run as VIM (no-compatible)
