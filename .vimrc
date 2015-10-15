@@ -1,6 +1,11 @@
 " Be improved
 set nocompatible
 
+if has("win32") || has("win64")
+  set runtimepath^=~/.vim
+  set runtimepath+=~/.vim/after
+endif
+
 "---------------------------------------
 " Bundle(NeoBundle) configuration
 "---------------------------------------
@@ -48,7 +53,8 @@ set t_Co=256
 let g:solarized_italic=0
 let g:solarized_termcolors=256
 "let g:molokai_original = 1
-"let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_contrast_light='hard'
 set background=dark
 colorscheme gruvbox
 
@@ -164,9 +170,11 @@ nnoremap <silent> <C-k> :<C-u>cp<CR>
 nnoremap <C-L> :nohl<CR><C-L>
 
 "-------------------------------------
-" Tab Mode
+" Buffers and Tab Mode
 "-------------------------------------
-set showtabline=2
+let g:airline#extensions#tabline#enabled = 1
+nnoremap <silent> <C-tab> :<C-u>bn<CR>
+nnoremap <silent> <C-S-tab> :<C-u>bp<CR>
 nmap <leader>t [TABCMD]
 nnoremap <silent> [TABCMD]f :<C-u>tabfirst<CR>
 nnoremap <silent> [TABCMD]l :<C-u>tablast<CR>
@@ -175,10 +183,9 @@ nnoremap <silent> [TABCMD]c :<C-u>tabclose<CR>
 nnoremap <silent> [TABCMD]o :<C-u>tabonly<CR>
 nnoremap <silent> [TABCMD]s :<C-u>tabs<CR>
 nnoremap <silent> [TABCMD]n :<C-u>tabnext<CR>
-nnoremap <silent> <C-right> :<C-u>tabnext<CR>
-nnoremap <silent> <C-left> :<C-u>tabprevious<CR>
-nnoremap <silent> <C-tab> :<C-u>tabnext<CR>
-nnoremap <silent> <C-S-tab> :<C-u>tabprevious<CR>
+nnoremap <silent> [TABCMD]p :<C-u>tabprevious<CR>
+nnoremap <silent> <F7> :<C-u>tabnext<CR>
+nnoremap <silent> <F8> :<C-u>tabprevious<CR>
 
 " set working directory as current directory
 set autochdir

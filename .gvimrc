@@ -3,8 +3,8 @@ if has("win32") || has("win64")
   set guifont=NasuM:h10:cSHIFTJIS
   set printfont=NasuM:h10:cSHIFTJIS
 else
-  set guifont=NasuM\ 12
-  set printfont=NasuM\ 12
+  set guifont=NasuM:h14
+  set printfont=NasuM:h14
 endif
 
 " Colorscheme
