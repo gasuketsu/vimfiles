@@ -1,7 +1,25 @@
-set columns=100
-set lines=40
+" Font
+if has("win32") || has("win64")
+  set guifont=NasuM:h10:cSHIFTJIS
+  set printfont=NasuM:h10:cSHIFTJIS
+else
+  set guifont=NasuM\ 12
+  set printfont=NasuM\ 12
+endif
 
-set guifont=Ricty:h16
-"set guifont=Osaka-Mono:h16
+" Colorscheme
+set background=dark
+colorscheme gruvbox
 
-set transparency=2
+" Default window size
+set columns=120
+set lines=35
+
+" IME settings in Insert/Search Mode for Windows environment
+" 0:off 1:off 2:on
+if has("win32") || has("win64")
+  set iminsert=0
+  set imsearch=0
+  " Fix IM control mode
+  let IM_CtrlMode = 4
+endif
