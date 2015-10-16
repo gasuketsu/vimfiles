@@ -2,8 +2,8 @@
 set nocompatible
 
 if has("win32") || has("win64")
-  set runtimepath^=~/.vim
-  set runtimepath+=~/.vim/after
+  set runtimepath^=$HOME/.vim
+  set runtimepath+=$HOME/.vim/after
 endif
 
 "---------------------------------------
@@ -12,7 +12,7 @@ endif
 filetype off
 
 if has('vim_starting')
-  set runtimepath+=~/.vim/bundle/neobundle.vim
+  set runtimepath+=$HOME/.vim/bundle/neobundle.vim
 endif
 call neobundle#begin(expand('~/.vim/bundle/'))
 
@@ -22,7 +22,6 @@ NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/neocomplcache.vim'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'QuickBuf'
 NeoBundle 'DirDiff.vim'
 NeoBundle 'google.vim'
 NeoBundle 'gtags.vim'
@@ -32,6 +31,8 @@ NeoBundle 'vcscommand.vim'
 NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'milkypostman/vim-togglelist'
+NeoBundle 'sandeepcr529/Buffet.vim'
+NeoBundle 'ntpeters/vim-better-whitespace'
 " Color Schemes
 NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'altercation/vim-colors-solarized'
@@ -52,7 +53,6 @@ filetype plugin indent on
 set t_Co=256
 let g:solarized_italic=0
 let g:solarized_termcolors=256
-"let g:molokai_original = 1
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_contrast_light='hard'
 set background=dark
@@ -103,7 +103,10 @@ set hidden
 " wildmode(complement)
 set wildmenu
 set wildmode=list:longest
-set wildignore+=*.o,*.obj,*.pyc,*.DS_Store,*.db
+set wildignore+=*.o,*.obj,*.a,*.pyc,*.DS_Store,*.db,*/tmp/*,*.swp,*.zip,*.exe,*.dll,*.so
+if has("win32") || has("win64")
+  set wildignore+=NTUSER*,ntuser*
+endif
 
 " no beep
 set vb t_vb=
@@ -173,6 +176,7 @@ nnoremap <C-L> :nohl<CR><C-L>
 " Buffers and Tab Mode
 "-------------------------------------
 let g:airline#extensions#tabline#enabled = 1
+nnoremap <silent> <leader>b :<C-u>Bufferlist<CR>
 nnoremap <silent> <C-tab> :<C-u>bn<CR>
 nnoremap <silent> <C-S-tab> :<C-u>bp<CR>
 nmap <leader>t [TABCMD]
@@ -198,8 +202,10 @@ nmap <silent> <F9> :<C-u>NERDTreeToggle<CR>
 "------------------------------------
 " ctrlp.vim
 "------------------------------------
+let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_clear_cache_on_exit = 0
-let g:qb_hotkey = "<F3>"
+let g:ctrlp_root_markers = ['.ctrlp']
+let g:ctrlp_open_new_file = 'r'
 
 " VCS command
 nmap <Leader>v [VCS]
@@ -212,16 +218,14 @@ let g:VCSCommandMapPrefix = '[VCS]'
 autocmd BufWinEnter *.{md,mkd,mkdn,markdown} silent setf markdown
 
 "---------------------------
-" TrimTrailingWhitespace
+" vim-better-whitespace
 "---------------------------
-vnoremap <silent> <F12> :s/\s\+$//e<CR>
-nnoremap <silent> <F12> :%s/\s\+$//e<CR>
-
-"--------------------------
-" caw commenting
-"--------------------------
-nmap <Leader>c <Plug>(caw:i:toggle)<CR>
-vmap <Leader>c <Plug>(caw:i:toggle)<CR>
+" disable highlighting trailing whitespace by default.
+" (perform :ToggleWhitespace to enable highlighting)
+let g:better_whitespace_enabled = 0
+nnoremap <silent> <leader>w :ToggleWhitespace<CR>
+vnoremap <silent> <F12> :StripWhitespace<CR>
+nnoremap <silent> <F12> :StripWhitespace<CR>
 
 "--------------------------
 " multiple cursors
