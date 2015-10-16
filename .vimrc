@@ -6,47 +6,42 @@ if has("win32") || has("win64")
   set runtimepath+=$HOME/.vim/after
 endif
 
-"---------------------------------------
-" Bundle(NeoBundle) configuration
-"---------------------------------------
 filetype off
 
 if has('vim_starting')
-  set runtimepath+=$HOME/.vim/bundle/neobundle.vim
+  set runtimepath+=$HOME/.vim/bundle/Vundle.vim
 endif
-call neobundle#begin(expand('~/.vim/bundle/'))
+call vundle#begin()
 
-let g:neobundle_default_git_protocol='https'
-" List Bundle plugins here
-NeoBundle 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/neocomplcache.vim'
-NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'DirDiff.vim'
-NeoBundle 'google.vim'
-NeoBundle 'gtags.vim'
-NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'ludovicchabant/vim-lawrencium'
-NeoBundle 'vcscommand.vim'
-NeoBundle 'terryma/vim-multiple-cursors'
-NeoBundle 'bling/vim-airline'
-NeoBundle 'milkypostman/vim-togglelist'
-NeoBundle 'sandeepcr529/Buffet.vim'
-NeoBundle 'QuickBuf'
-NeoBundle 'ntpeters/vim-better-whitespace'
+" Let Vundle manage itself.
+Plugin 'VundleVim/Vundle.vim'
+" Plugins
+Plugin 'Shougo/neocomplcache.vim'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'DirDiff.vim'
+Plugin 'google.vim'
+Plugin 'gtags.vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'ludovicchabant/vim-lawrencium'
+Plugin 'vcscommand.vim'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'bling/vim-airline'
+Plugin 'milkypostman/vim-togglelist'
+Plugin 'sandeepcr529/Buffet.vim'
+Plugin 'QuickBuf'
+Plugin 'ntpeters/vim-better-whitespace'
 " Color Schemes
-NeoBundle 'w0ng/vim-hybrid'
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'wombat256.vim'
-NeoBundle 'tomasr/molokai'
-NeoBundle 'nanotech/jellybeans.vim'
-NeoBundle 'morhetz/gruvbox'
+Plugin 'w0ng/vim-hybrid'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'wombat256.vim'
+Plugin 'tomasr/molokai'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'morhetz/gruvbox'
 
-call neobundle#end()
-
-syntax enable
-filetype on
+call vundle#end()
 filetype plugin indent on
+syntax enable
 
 "---------------------------------------
 " Color Scheme
