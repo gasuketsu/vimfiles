@@ -31,7 +31,7 @@ NeoBundle 'vcscommand.vim'
 NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'milkypostman/vim-togglelist'
-NeoBundle 'sandeepcr529/Buffet.vim'
+NeoBundle 'jeetsukumaran/vim-buffergator'
 NeoBundle 'ntpeters/vim-better-whitespace'
 " Color Schemes
 NeoBundle 'w0ng/vim-hybrid'
@@ -176,18 +176,9 @@ nnoremap <C-L> :nohl<CR><C-L>
 " Buffers and Tab Mode
 "-------------------------------------
 let g:airline#extensions#tabline#enabled = 1
-nnoremap <silent> <leader>b :<C-u>Bufferlist<CR>
+nnoremap <silent> <F3> :BuffergatorToggle<CR>
 nnoremap <silent> <C-tab> :<C-u>bn<CR>
 nnoremap <silent> <C-S-tab> :<C-u>bp<CR>
-nmap <leader>t [TABCMD]
-nnoremap <silent> [TABCMD]f :<C-u>tabfirst<CR>
-nnoremap <silent> [TABCMD]l :<C-u>tablast<CR>
-nnoremap [TABCMD]e :<C-u>tabedit
-nnoremap <silent> [TABCMD]c :<C-u>tabclose<CR>
-nnoremap <silent> [TABCMD]o :<C-u>tabonly<CR>
-nnoremap <silent> [TABCMD]s :<C-u>tabs<CR>
-nnoremap <silent> [TABCMD]n :<C-u>tabnext<CR>
-nnoremap <silent> [TABCMD]p :<C-u>tabprevious<CR>
 nnoremap <silent> <F7> :<C-u>tabnext<CR>
 nnoremap <silent> <F8> :<C-u>tabprevious<CR>
 
