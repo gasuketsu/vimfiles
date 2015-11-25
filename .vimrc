@@ -9,37 +9,35 @@ endif
 filetype off
 
 if has('vim_starting')
-  set runtimepath+=$HOME/.vim/bundle/Vundle.vim
+  set runtimepath+=$HOME/.vim/bundle/neobundle.vim
 endif
-call vundle#begin()
+call neobundle#begin(expand('~/.vim/bundle/'))
 
-" Let Vundle manage itself.
-Plugin 'VundleVim/Vundle.vim'
+NeoBundleFetch 'Shougo/neobundle.vim'
 " Plugins
-Plugin 'Shougo/neocomplcache.vim'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/nerdtree'
-Plugin 'DirDiff.vim'
-Plugin 'google.vim'
-Plugin 'gtags.vim'
-Plugin 'kien/ctrlp.vim'
-Plugin 'ludovicchabant/vim-lawrencium'
-Plugin 'vcscommand.vim'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'bling/vim-airline'
-Plugin 'milkypostman/vim-togglelist'
-Plugin 'sandeepcr529/Buffet.vim'
-Plugin 'QuickBuf'
-Plugin 'ntpeters/vim-better-whitespace'
+NeoBundle has("lua") ? 'Shougo/neocomplete.vim' : 'Shougo/neocomplcache.vim'
+NeoBundle 'scrooloose/nerdcommenter'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'justmao945/vim-clang'
+NeoBundle 'DirDiff.vim'
+NeoBundle 'google.vim'
+NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'ludovicchabant/vim-lawrencium'
+NeoBundle 'vcscommand.vim'
+NeoBundle 'terryma/vim-multiple-cursors'
+NeoBundle 'bling/vim-airline'
+NeoBundle 'milkypostman/vim-togglelist'
+NeoBundle  v:version >= 703 ? 'sandeepcr529/Buffet.vim' : 'QuickBuf'
+NeoBundle 'ntpeters/vim-better-whitespace'
 " Color Schemes
-Plugin 'w0ng/vim-hybrid'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'wombat256.vim'
-Plugin 'tomasr/molokai'
-Plugin 'nanotech/jellybeans.vim'
-Plugin 'morhetz/gruvbox'
+NeoBundle 'w0ng/vim-hybrid'
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'wombat256.vim'
+NeoBundle 'tomasr/molokai'
+NeoBundle 'nanotech/jellybeans.vim'
+NeoBundle 'morhetz/gruvbox'
 
-call vundle#end()
+call neobundle#end()
 filetype plugin indent on
 syntax enable
 
@@ -147,7 +145,7 @@ endif
 "---------------------------------------
 " Ctags
 "---------------------------------------
-set tags+=.tags;~/
+set tags+=tags;~/
 
 "---------------------------------------
 " Keyboard Remap
@@ -172,7 +170,8 @@ nnoremap <C-L> :nohl<CR><C-L>
 " Buffers and Tab Mode
 "-------------------------------------
 let g:airline#extensions#tabline#enabled = 1
-if v:version >= 703
+
+if (neobundle#is_installed('Buffet.vim'))
   nnoremap <silent> <leader>b :Bufferlist<CR>
 else
   let g:qb_hotkey = "<leader>b"
@@ -227,3 +226,36 @@ let g:multiple_cursor_prev_key='<C-h>'
 let g:multiple_cursor_skip_key='<C-x>'
 let g:multiple_cursor_quit_key='<Esc>'
 
+"--------------------------
+" vim-clang
+"--------------------------
+let g:clang_cpp_options = '-std=c++11'
+
+"--------------------------
+" neocomplete
+"--------------------------
+if (neobundle#is_installed('neocomplete.vim'))
+  if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+  endif
+  let g:neocomplete#keyword_patterns._ = '\h\w*'
+
+  if !exists('g:neocomplete#sources#dictionary#dictionaries')
+    let g:neocomplete#sources#dictionary#dictionaries = {}
+  endif
+  let dict = g:neocomplete#sources#dictionary#dictionaries
+
+  let g:neocomplete#sources#buffer#disabled_pattern = '\.log\|\.log\.\|\.jax\|Log.txt'
+  let g:neocomplete#enable_ignore_case = 0
+  let g:neocomplete#enable_smart_case  = 1
+  let g:neocomplete#enable_fuzzy_completion = 0
+
+  call neocomplete#custom_source('_', 'sorters',  ['sorter_length'])
+  call neocomplete#custom_source('_', 'matchers', ['matcher_head'])
+
+  inoremap <expr><C-n>  pumvisible() ? "\<C-n>" : "\<C-x>\<C-u>\<C-p>"
+  inoremap <expr><CR>   pumvisible() ? neocomplete#close_popup() : "<CR>"
+  inoremap <expr><Esc>  pumvisible() ? neocomplete#cancel_popup() : "<Esc>"
+  inoremap <expr><C-g>  neocomplete#undo_completion()
+  inoremap <expr><C-h>  neocomplete#smart_close_popup()."\<C-h>"
+endif
