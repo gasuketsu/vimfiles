@@ -18,7 +18,6 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle has("lua") ? 'Shougo/neocomplete.vim' : 'Shougo/neocomplcache.vim'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'justmao945/vim-clang'
 NeoBundle 'DirDiff.vim'
 NeoBundle 'google.vim'
 NeoBundle 'kien/ctrlp.vim'
@@ -227,35 +226,30 @@ let g:multiple_cursor_skip_key='<C-x>'
 let g:multiple_cursor_quit_key='<Esc>'
 
 "--------------------------
-" vim-clang
-"--------------------------
-let g:clang_cpp_options = '-std=c++11'
-
-"--------------------------
 " neocomplete
 "--------------------------
-if (neobundle#is_installed('neocomplete.vim'))
-  if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-  endif
-  let g:neocomplete#keyword_patterns._ = '\h\w*'
-
-  if !exists('g:neocomplete#sources#dictionary#dictionaries')
-    let g:neocomplete#sources#dictionary#dictionaries = {}
-  endif
-  let dict = g:neocomplete#sources#dictionary#dictionaries
-
-  let g:neocomplete#sources#buffer#disabled_pattern = '\.log\|\.log\.\|\.jax\|Log.txt'
-  let g:neocomplete#enable_ignore_case = 0
-  let g:neocomplete#enable_smart_case  = 1
-  let g:neocomplete#enable_fuzzy_completion = 0
-
-  call neocomplete#custom_source('_', 'sorters',  ['sorter_length'])
-  call neocomplete#custom_source('_', 'matchers', ['matcher_head'])
-
-  inoremap <expr><C-n>  pumvisible() ? "\<C-n>" : "\<C-x>\<C-u>\<C-p>"
-  inoremap <expr><CR>   pumvisible() ? neocomplete#close_popup() : "<CR>"
-  inoremap <expr><Esc>  pumvisible() ? neocomplete#cancel_popup() : "<Esc>"
-  inoremap <expr><C-g>  neocomplete#undo_completion()
-  inoremap <expr><C-h>  neocomplete#smart_close_popup()."\<C-h>"
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_ignore_case = 0
+let g:neocomplete#enable_smart_case  = 1
+let g:neocomplete#enable_fuzzy_completion = 0
+let g:neocomplete#min_keyword_length = 3
+if !exists('g:neocomplete#sources#dictionary#dictionaries')
+  let g:neocomplete#sources#dictionary#dictionaries = {}
 endif
+let dict = g:neocomplete#sources#dictionary#dictionaries
+
+if !exists('g:neocomplete#keyword_patterns')
+  let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns._ = '\h\w*'
+let g:neocomplete#sources#buffer#disabled_pattern = '\.log\|\.log\.\|\.jax\|\.txt\|\.bak\|\.orig'
+
+call neocomplete#custom_source('_', 'sorters',  ['sorter_length'])
+call neocomplete#custom_source('_', 'matchers', ['matcher_head'])
+
+inoremap <expr><CR>   pumvisible() ? neocomplete#close_popup() : "<CR>"
+inoremap <expr><Esc>  pumvisible() ? neocomplete#close_popup() : "<Esc>"
+inoremap <expr><C-c>  pumvisible() ? neocomplete#cancel_popup() : neocomplete#start_manual_complete()
+inoremap <expr><C-u>  pumvisible() ? neocomplete#undo_completion() : "\<C-u>"
+inoremap <expr><C-h>  pumvisible() ? neocomplete#smart_close_popup()."\<C-h>" : "\<C-h>"
+
