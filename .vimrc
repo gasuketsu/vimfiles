@@ -228,28 +228,39 @@ let g:multiple_cursor_quit_key='<Esc>'
 "--------------------------
 " neocomplete
 "--------------------------
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_ignore_case = 0
-let g:neocomplete#enable_smart_case  = 1
-let g:neocomplete#enable_fuzzy_completion = 0
-let g:neocomplete#min_keyword_length = 3
-if !exists('g:neocomplete#sources#dictionary#dictionaries')
-  let g:neocomplete#sources#dictionary#dictionaries = {}
+if (neobundle#is_installed('neocomplete.vim'))
+  let g:neocomplete#enable_at_startup = 1
+  let g:neocomplete#enable_ignore_case = 0
+  let g:neocomplete#enable_smart_case  = 1
+  let g:neocomplete#enable_fuzzy_completion = 0
+  let g:neocomplete#min_keyword_length = 3
+  if !exists('g:neocomplete#sources#dictionary#dictionaries')
+    let g:neocomplete#sources#dictionary#dictionaries = {}
+  endif
+  let dict = g:neocomplete#sources#dictionary#dictionaries
+
+  if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+  endif
+  let g:neocomplete#keyword_patterns._ = '\h\w*'
+  let g:neocomplete#sources#buffer#disabled_pattern = '\.log\|\.log\.\|\.jax\|\.txt\|\.bak\|\.orig'
+
+  call neocomplete#custom_source('_', 'sorters',  ['sorter_length'])
+  call neocomplete#custom_source('_', 'matchers', ['matcher_head'])
+
+  inoremap <expr><CR>   pumvisible() ? neocomplete#close_popup() : "<CR>"
+  inoremap <expr><Esc>  pumvisible() ? neocomplete#close_popup() : "<Esc>"
+  inoremap <expr><C-c>  pumvisible() ? neocomplete#cancel_popup() : neocomplete#start_manual_complete()
+  inoremap <expr><C-u>  pumvisible() ? neocomplete#undo_completion() : "\<C-u>"
+  inoremap <expr><C-h>  pumvisible() ? neocomplete#smart_close_popup()."\<C-h>" : "\<C-h>"
+elseif neobundle#is_installed('neocomplcache.vim'))
+  let g:neocomplcache_enable_at_startup = 1
+  let g:neocomplcache_enable_ignore_case = 0
+  let g:neocomplcache_enable_smart_case  = 0
+  if !exists('g:neocomplcache_keyword_patterns')
+    let g:neocomplcache_keyword_patterns = {}
+  endif
+  let g:neocomplcache_keyword_patterns._ = '\h\w*'
+  let g:neocomplcache_enable_camel_case_completion = 1
+  let g:neocomplcache_enable_underbar_completion = 1
 endif
-let dict = g:neocomplete#sources#dictionary#dictionaries
-
-if !exists('g:neocomplete#keyword_patterns')
-  let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns._ = '\h\w*'
-let g:neocomplete#sources#buffer#disabled_pattern = '\.log\|\.log\.\|\.jax\|\.txt\|\.bak\|\.orig'
-
-call neocomplete#custom_source('_', 'sorters',  ['sorter_length'])
-call neocomplete#custom_source('_', 'matchers', ['matcher_head'])
-
-inoremap <expr><CR>   pumvisible() ? neocomplete#close_popup() : "<CR>"
-inoremap <expr><Esc>  pumvisible() ? neocomplete#close_popup() : "<Esc>"
-inoremap <expr><C-c>  pumvisible() ? neocomplete#cancel_popup() : neocomplete#start_manual_complete()
-inoremap <expr><C-u>  pumvisible() ? neocomplete#undo_completion() : "\<C-u>"
-inoremap <expr><C-h>  pumvisible() ? neocomplete#smart_close_popup()."\<C-h>" : "\<C-h>"
-
