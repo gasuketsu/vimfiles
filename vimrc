@@ -9,9 +9,15 @@ endif
 filetype off
 
 if has('vim_starting')
-  set runtimepath+=$HOME/.vim/bundle/neobundle.vim
+  if has("win32") || has("win64")
+    set runtimepath+=$HOME/vimfiles/bundle/neobundle.vim
+  else
+    set runtimepath+=$HOME/.vim/bundle/neobundle.vim
+  endif
 endif
-call neobundle#begin(expand('~/.vim/bundle/'))
+
+let g:bundle_dir = has("win32") || has("win64") ? '~/vimfiles/bundle/' : '~/.vim/bundle/'
+call neobundle#begin(expand(g:bundle_dir))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
 " Plugins
