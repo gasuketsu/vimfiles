@@ -34,6 +34,7 @@ NeoBundle 'bling/vim-airline'
 NeoBundle 'milkypostman/vim-togglelist'
 NeoBundle  v:version >= 703 ? 'sandeepcr529/Buffet.vim' : 'QuickBuf'
 NeoBundle 'ntpeters/vim-better-whitespace'
+NeoBundle 'gasuketsu/gtags.vim'
 " Color Schemes
 NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'altercation/vim-colors-solarized'
