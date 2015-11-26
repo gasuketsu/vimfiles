@@ -235,7 +235,7 @@ let g:multiple_cursor_quit_key='<Esc>'
 "--------------------------
 " neocomplete
 "--------------------------
-if (neobundle#is_installed('neocomplete.vim'))
+if neobundle#is_installed('neocomplete.vim')
   let g:neocomplete#enable_at_startup = 1
   let g:neocomplete#enable_ignore_case = 0
   let g:neocomplete#enable_smart_case  = 1
@@ -260,7 +260,7 @@ if (neobundle#is_installed('neocomplete.vim'))
   inoremap <expr><C-c>  pumvisible() ? neocomplete#cancel_popup() : neocomplete#start_manual_complete()
   inoremap <expr><C-u>  pumvisible() ? neocomplete#undo_completion() : "\<C-u>"
   inoremap <expr><C-h>  pumvisible() ? neocomplete#smart_close_popup()."\<C-h>" : "\<C-h>"
-elseif neobundle#is_installed('neocomplcache.vim'))
+elseif neobundle#is_installed('neocomplcache.vim')
   let g:neocomplcache_enable_at_startup = 1
   let g:neocomplcache_enable_ignore_case = 0
   let g:neocomplcache_enable_smart_case  = 0
