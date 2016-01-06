@@ -24,7 +24,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle has("lua") ? 'Shougo/neocomplete.vim' : 'Shougo/neocomplcache.vim'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'DirDiff.vim'
+NeoBundle 'will133/vim-dirdiff'
 NeoBundle 'google.vim'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'ludovicchabant/vim-lawrencium'
@@ -74,7 +74,7 @@ set number
 set cursorline
 set wrap
 set list
-set listchars=tab:>-,trail:-,extends:<,precedes:>
+set listchars=tab:>-,trail:.,extends:<,precedes:>
 set ambiwidth=double
 
 set cmdheight=2
