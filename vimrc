@@ -21,7 +21,7 @@ call neobundle#begin(expand(g:bundle_dir))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
 " Plugins
-NeoBundle has("lua") ? 'Shougo/neocomplete.vim' : 'Shougo/neocomplcache.vim'
+NeoBundle has("lua") && has("patch-7.4.954") ? 'Shougo/neocomplete.vim' : 'Shougo/neocomplcache.vim'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'will133/vim-dirdiff'
@@ -30,7 +30,8 @@ NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'ludovicchabant/vim-lawrencium'
 NeoBundle 'vcscommand.vim'
 NeoBundle 'terryma/vim-multiple-cursors'
-NeoBundle 'bling/vim-airline'
+NeoBundle 'vim-airline/vim-airline'
+NeoBundle 'vim-airline/vim-airline-themes'
 NeoBundle 'milkypostman/vim-togglelist'
 NeoBundle  v:version >= 703 ? 'sandeepcr529/Buffet.vim' : 'QuickBuf'
 NeoBundle 'ntpeters/vim-better-whitespace'
