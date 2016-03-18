@@ -1,10 +1,10 @@
 " Font
 if has("win32") || has("win64")
-  set guifont=NasuM:h10:cSHIFTJIS
-  set printfont=NasuM:h10:cSHIFTJIS
+  set guifont=Ricty\ Diminished:h12:cSHIFTJIS
+  set printfont=Ricty\ Diminished:h12:cSHIFTJIS
 else
-  set guifont=NasuM:h14
-  set printfont=NasuM:h14
+  set guifont=Ricty\ Diminished:h16
+  set printfont=Ricty\ Diminished:h16
 endif
 
 " Colorscheme
