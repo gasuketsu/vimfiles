@@ -138,9 +138,6 @@ set hlsearch
 set ignorecase
 set smartcase
 
-" change current directory when changing buffer
-set autochdir
-
 " IME settings in Insert/Search Mode for Windows environment
 " 0:off 1:off 2:on
 if has("win32") || has("win64")
@@ -189,8 +186,9 @@ nnoremap <silent> <C-S-tab> :<C-u>bp<CR>
 nnoremap <silent> <F7> :<C-u>tabnext<CR>
 nnoremap <silent> <F8> :<C-u>tabprevious<CR>
 
-" set working directory as current directory
-set autochdir
+" change current directory when changing buffer
+"set autochdir
+nnoremap <silent> <F3> :<C-u>lcd %:h<CR>
 
 "------------------------------------
 " NERDTree
