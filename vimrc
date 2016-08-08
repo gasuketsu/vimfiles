@@ -4,13 +4,17 @@ filetype plugin indent on
 syntax enable
 
 " vim-plug
-let g:plugged_dir = has("win32") || has("win64") ? '~/vimfiles/plugged/' : '~/.vim/plugged/'
-call plug#begin(expand(g:plugged_dir))
-if has("lua") && has ("patch-7.4.954")
-  Plug 'Shougo/neocomplete.vim'
-else
-  Plug 'Shougo/neocomplecache.vim'
-endif
+let s:plug = {
+      \ "plugs": get(g:, 'plugs', {})
+      \ }
+
+function! s:plug.is_installed(name)
+  return has_key(self.plugs, a:name) ? isdirectory(self.plugs[a:name].dir) : 0
+endfunction
+
+let s:plugged_dir = has("win32") || has("win64") ? '~/vimfiles/plugged/' : '~/.vim/plugged/'
+call plug#begin(expand(s:plugged_dir))
+Plug 'ervandew/supertab'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'will133/vim-dirdiff'
@@ -29,14 +33,6 @@ Plug 'w0ng/vim-hybrid'
 Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
 call plug#end()
-
-let s:plug = {
-      \ "plugs": get(g:, 'plugs', {})
-      \ }
-
-function! s:plug.is_installed(name)
-  return has_key(self.plugs, a:name) ? isdirectory(self.plugs[a:name].dir) : 0
-endfunction
 
 " Color Scheme
 set t_Co=256
@@ -71,14 +67,9 @@ set showcmd
 set display=lastline
 
 "---------------------------------------
-" Mouse configuration
-"---------------------------------------
-set mouse=a
-
-"---------------------------------------
 " Editor configuration
 "---------------------------------------
-" No backup, No swapfile
+set mouse=a
 set nobackup
 set noswapfile
 set viminfo=
@@ -209,42 +200,3 @@ let g:multiple_cursor_prev_key='<C-h>'
 let g:multiple_cursor_skip_key='<C-x>'
 let g:multiple_cursor_quit_key='<Esc>'
 
-"--------------------------
-" neocomplete
-"--------------------------
-if s:plug.is_installed('neocomplete.vim')
-  let g:neocomplete#enable_at_startup = 1
-  let g:neocomplete#enable_ignore_case = 0
-  let g:neocomplete#enable_smart_case  = 1
-  let g:neocomplete#enable_fuzzy_completion = 0
-  let g:neocomplete#min_keyword_length = 3
-  if !exists('g:neocomplete#sources#dictionary#dictionaries')
-    let g:neocomplete#sources#dictionary#dictionaries = {}
-  endif
-  let dict = g:neocomplete#sources#dictionary#dictionaries
-
-  if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-  endif
-  let g:neocomplete#keyword_patterns._ = '\h\w*'
-  let g:neocomplete#sources#buffer#disabled_pattern = '\.log\|\.log\.\|\.jax\|\.txt\|\.bak\|\.orig'
-
-  call neocomplete#custom_source('_', 'sorters',  ['sorter_length'])
-  call neocomplete#custom_source('_', 'matchers', ['matcher_head'])
-
-  inoremap <expr><CR>   pumvisible() ? neocomplete#close_popup() : "<CR>"
-  inoremap <expr><Esc>  pumvisible() ? neocomplete#close_popup() : "<Esc>"
-  inoremap <expr><C-c>  pumvisible() ? neocomplete#cancel_popup() : neocomplete#start_manual_complete()
-  inoremap <expr><C-u>  pumvisible() ? neocomplete#undo_completion() : "\<C-u>"
-  inoremap <expr><C-h>  pumvisible() ? neocomplete#smart_close_popup()."\<C-h>" : "\<C-h>"
-elseif s:plug.is_installed('neocomplcache.vim')
-  let g:neocomplcache_enable_at_startup = 1
-  let g:neocomplcache_enable_ignore_case = 0
-  let g:neocomplcache_enable_smart_case  = 0
-  if !exists('g:neocomplcache_keyword_patterns')
-    let g:neocomplcache_keyword_patterns = {}
-  endif
-  let g:neocomplcache_keyword_patterns._ = '\h\w*'
-  let g:neocomplcache_enable_camel_case_completion = 1
-  let g:neocomplcache_enable_underbar_completion = 1
-endif
