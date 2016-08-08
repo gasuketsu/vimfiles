@@ -27,6 +27,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'milkypostman/vim-togglelist'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'gasuketsu/gtags.vim'
 " Color Schemes
 Plug 'w0ng/vim-hybrid'
