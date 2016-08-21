@@ -148,8 +148,6 @@ nnoremap <silent> <C-k> :<C-u>cp<CR>
 " next search
 nnoremap <C-L> :nohl<CR><C-L>
 
-nnoremap <silent> <C-tab> :<C-u>bn<CR>
-nnoremap <silent> <C-S-tab> :<C-u>bp<CR>
 nnoremap <silent> <F7> :<C-u>tabnext<CR>
 nnoremap <silent> <F8> :<C-u>tabprevious<CR>
 
@@ -169,10 +167,6 @@ let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_root_markers = ['.ctrlp']
 let g:ctrlp_open_new_file = 'r'
-
-" VCS command
-nmap <Leader>v [VCS]
-let g:VCSCommandMapPrefix = '[VCS]'
 
 "---------------------
 " FileType settings
