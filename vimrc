@@ -41,7 +41,8 @@ let g:gruvbox_contrast_dark='medium'
 let g:gruvbox_contrast_light='medium'
 let g:gruvbox_invert_selection=0
 set background=dark
-colorscheme gruvbox
+colorscheme hybrid
+let g:airline_theme='distinguished'
 
 " Buffers and Tab Mode
 let g:airline#extensions#tabline#enabled = 1
