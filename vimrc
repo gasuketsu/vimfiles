@@ -29,6 +29,7 @@ Plug 'gasuketsu/gtags.vim'
 Plug 'mhinz/vim-signify'
 " Color Schemes
 Plug 'w0ng/vim-hybrid'
+Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
 call plug#end()
@@ -41,8 +42,8 @@ let g:gruvbox_contrast_dark='medium'
 let g:gruvbox_contrast_light='medium'
 let g:gruvbox_invert_selection=0
 set background=dark
-colorscheme hybrid
-let g:airline_theme='distinguished'
+colorscheme hybrid_material
+let g:airline_theme='gruvbox'
 
 " Buffers and Tab Mode
 let g:airline#extensions#tabline#enabled = 1
