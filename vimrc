@@ -27,6 +27,7 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'gasuketsu/gtags.vim'
 Plug 'mhinz/vim-signify'
+Plug 'tpope/vim-fugitive'
 " Color Schemes
 Plug 'w0ng/vim-hybrid'
 Plug 'kristijanhusak/vim-hybrid-material'
@@ -136,6 +137,9 @@ set tags+=tags;~/
 "---------------------------------------
 " Editor
 nnoremap Y y$
+
+" CtrlP
+let g:ctrlp_working_path_mode = 'ra'
 
 " Gtags
 nnoremap tg :<C-u>Gtags -g
