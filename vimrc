@@ -28,6 +28,7 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'gasuketsu/gtags.vim'
 Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive'
+Plug 'ConradIrwin/vim-bracketed-paste'
 " Color Schemes
 Plug 'w0ng/vim-hybrid'
 Plug 'kristijanhusak/vim-hybrid-material'
