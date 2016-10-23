@@ -22,7 +22,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'milkypostman/vim-togglelist'
-Plug 'jeetsukumaran/vim-buffergator'
+Plug 'sandeepcr529/Buffet.vim'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'gasuketsu/gtags.vim'
@@ -150,8 +150,8 @@ nnoremap <silent> <C-k> :<C-u>cp<CR>
 " next search
 nnoremap <C-L> :nohl<CR><C-L>
 
-nnoremap <silent> <F7> :<C-u>tabnext<CR>
-nnoremap <silent> <F8> :<C-u>tabprevious<CR>
+" Buffet
+nnoremap <silent> <leader>b :Bufferlist<CR>
 
 " change current directory when changing buffer
 "set autochdir
