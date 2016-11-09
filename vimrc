@@ -27,6 +27,8 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'gasuketsu/gtags.vim'
 Plug 'mhinz/vim-signify'
+Plug 'tpope/vim-fugitive'
+Plug 'ConradIrwin/vim-bracketed-paste'
 " Color Schemes
 Plug 'w0ng/vim-hybrid'
 Plug 'kristijanhusak/vim-hybrid-material'
@@ -104,7 +106,7 @@ set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set cindent
-set cino=>2,l1,N-s,g0,(0
+set cino=>2,l1,N-s,g0,(0,W4
 
 " enable to delete newline
 set backspace=2
@@ -136,6 +138,9 @@ set tags+=tags;~/
 "---------------------------------------
 " Editor
 nnoremap Y y$
+
+" CtrlP
+let g:ctrlp_working_path_mode = 'ra'
 
 " Gtags
 nnoremap tg :<C-u>Gtags -g
