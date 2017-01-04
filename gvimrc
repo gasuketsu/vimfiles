@@ -2,9 +2,12 @@
 if has("win32") || has("win64")
   set guifont=Migu\ 2M:h12:cSHIFTJIS
   set printfont=Migu\ 2M:h12:cSHIFTJIS
-else
+elseif has("mac")
   set guifont=Migu\ 2M:h16
   set printfont=Migu\ 2M:h16
+else
+  set guifont=Migu\ 2M\ 11
+  set printfont=Migu\ 2M\ 11
 endif
 
 " Colorscheme
